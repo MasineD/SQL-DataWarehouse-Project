@@ -64,6 +64,27 @@ SELECT OrderNumber, ProductKey, CustomerID, --Removing invalid date variables
 	END) AS Price
 FROM Bronze.crm_SalesDetails
 
+/************* Cleaning the Customers table *******************/
+INSERT INTO Silver.erp_Customers (ID, BirthDate, Gender)
+SELECT
+	(CASE	--Extracting the CustomerID from the provided ID column
+		WHEN ID LIKE 'NAS%' THEN SUBSTRING(ID,4,LEN(ID))
+		ELSE ID
+	END) CustomerID,
+	(CASE	--Nullifying invalid dates
+		WHEN BirthDate > GETDATE() THEN NULL
+		ELSE BirthDate
+	END )  AS BirthDate,
+	(CASE	--Standardizing and normalizing the Gender column
+		WHEN UPPER(TRIM(Gender)) IN('F','FEMALE') THEN 'Female'
+		WHEN UPPER(TRIM(Gender)) IN('M','MALE') THEN 'Male'
+		ELSE 'Unknown'
+	END) AS Gender
+FROM Bronze.erp_Customers;
+
+
+
+
 
 
 

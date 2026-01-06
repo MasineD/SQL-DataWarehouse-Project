@@ -63,14 +63,14 @@ CREATE TABLE Silver.erp_Customers(
 IF OBJECT_ID('Silver.erp_Location', 'U') IS NOT NULL
 	DROP TABLE Silver.erp_Location;
 CREATE TABLE Silver.erp_Location(
-	CountryID NVARCHAR(50),
+	CustomerID NVARCHAR(50),
 	Country NVARCHAR(50),
 	dwh_CreateDate DATETIME2 DEFAULT GETDATE()
 );
 --Creating the products category table
-IF OBJECT_ID('Silver.erp_ProductsCategory', 'U') IS NOT NULL
-	DROP TABLE Silver.erp_ProductsCategory;
-CREATE TABLE Silver.erp_ProductsCategory(
+IF OBJECT_ID('Silver.erp_ProductsCatalogue', 'U') IS NOT NULL
+	DROP TABLE Silver.erp_ProductsCatalogue;
+CREATE TABLE Silver.erp_ProductsCatalogue(
 	ID NVARCHAR(50),
 	Category NVARCHAR(50),
 	SubCategory NVARCHAR(50),

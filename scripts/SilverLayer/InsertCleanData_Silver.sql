@@ -33,3 +33,39 @@ END) AS ProductLine, CAST(ProductStartDate AS DATE) ProductStartDate
 , CAST(LEAD(ProductStartDate) OVER(PARTITION BY ProductKey ORDER BY ProductStartDate)-1 AS DATE) AS ProductEndDate
 FROM Bronze.crm_ProductInfo;
 
+/************* Cleaning the SalesDetails table *******************/
+/*	Rules used for Sales, Quantity, and Price:
+	1.If Sales is ZERO, NEGATIVE OR NULL, then calculate the value using Price and Quantity
+	2.If Price is ZERO OR NULL,calculate it using Sales and Quantity
+	3.If Price is NEGATIVE, convert it to POSITIVE
+*/
+INSERT INTO Silver.crm_SalesDetails ( OrderNumber, ProductKey, CustomerID, OrderDate, ShipDate, DueDate, Sales, Quantity, Price)
+SELECT OrderNumber, ProductKey, CustomerID, --Removing invalid date variables
+	(CASE
+		WHEN OrderDate = 0 OR LEN(OrderDate) != 8 OR CAST(CAST(OrderDate AS VARCHAR) AS DATE) >= DATEADD(DAY,1,GETDATE()) OR OrderDate > DueDate
+		THEN NULL
+		ELSE  CAST(CAST(OrderDate AS VARCHAR) AS DATE)
+	END) AS OrderDate,
+	(CASE
+		WHEN ShipDate = 0 OR LEN(ShipDate)  != 8 OR ShipDate < OrderDate THEN NULL
+		ELSE  CAST(CAST(ShipDate AS VARCHAR) AS DATE)
+	END) AS ShipDate,
+	(CASE
+		WHEN DueDate = 0 OR LEN(DueDate) != 8 OR OrderDate > DueDate THEN NULL
+		ELSE  CAST(CAST(DueDate AS VARCHAR) AS DATE)
+	END) AS DueDate,
+	(CASE
+		WHEN Sales IS NULL OR Sales <=0 OR Sales != Quantity * ABS(Price) THEN Quantity * ABS(Price)
+		ELSE Sales
+	END) AS Sales, Quantity,
+	(CASE
+		WHEN Price IS NULL OR Price <= 0 THEN Sales/NULLIF(Quantity,0)
+		ELSE Price
+	END) AS Price
+FROM Bronze.crm_SalesDetails
+
+
+
+
+
+

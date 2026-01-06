@@ -82,6 +82,18 @@ SELECT
 	END) AS Gender
 FROM Bronze.erp_Customers;
 
+/************* Cleaning the Location table ******************/
+INSERT INTO Silver.erp_Location (CustomerID, Country)
+SELECT REPLACE(CountryID,'-','') CustomerID,	--Remove the dash(-) in CustomerID to allow JOINs with Customers table
+	(CASE	--Standardizing and normalising the Country column
+		WHEN UPPER(TRIM(Country)) = 'DE' THEN 'Germany'
+		WHEN UPPER(TRIM(Country)) IN ('US','USA') THEN 'United States'
+		WHEN UPPER(TRIM(Country)) = '' OR UPPER(TRIM(Country)) IS NULL THEN 'Unknown'
+		ELSE TRIM(Country)
+	END)  Country
+FROM Bronze.erp_Location
+
+
 
 
 

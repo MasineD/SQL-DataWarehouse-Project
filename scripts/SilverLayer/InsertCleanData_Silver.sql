@@ -93,7 +93,10 @@ SELECT REPLACE(CountryID,'-','') CustomerID,	--Remove the dash(-) in CustomerID 
 	END)  Country
 FROM Bronze.erp_Location
 
-
+/************* Cleaning the ProductCatalogue table ******************/
+INSERT INTO Silver.erp_ProductsCatalogue (ID,Category, SubCategory, Maintenance)
+SELECT ID, Category, SubCategory, Maintenance
+FROM Bronze.erp_ProductsCategory
 
 
 

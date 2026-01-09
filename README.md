@@ -61,26 +61,23 @@ These steps were followed to implement the project:
 ```
 SQL-Data-Warehouse-Project/
 │
-├── datasets/                           # Raw datasets used in the project (ERP and CRM data)
+├── datasets/                           # Raw datasets used in the project, folders (source_crm and source_erp) containing the csv files
 │
-├── docs/                               # Project documentation and architecture details
-│   ├── etl.drawio                      # Draw.io file shows all different techniquies and methods of ETL
-│   ├── data_architecture.drawio        # Draw.io file shows the project's architecture
+├── docs/                               # Project documentation and architecture details                     # Draw.io file shows all different techniquies and methods of ETL
+│   ├── DataArchitecture.png			# Image of draw.io file shows the project's architecture
 │   ├── data_catalog.md                 # Catalog of datasets, including field descriptions and metadata
-│   ├── data_flow.drawio                # Draw.io file for the data flow diagram
-│   ├── data_models.drawio              # Draw.io file for data models (star schema)
-│   ├── naming-conventions.md           # Consistent naming guidelines for tables, columns, and files
+│   ├── DataFlow diagram.png            # Image of draw.io file for the data flow diagram
+│   ├── DataMode.png					# Image of draw.io file for data models (star schema)
+│   ├── data_layers.pdf_				# PDF file demostrating the layers of the Data Architecture
+│   ├── DataIntegration.png				# Image of draw.io file demonstration how the data is integrated
+│   └── naming-conventions.md           # Consistent naming guidelines for tables, and columns
 │
 ├── scripts/                            # SQL scripts for ETL and transformations
-│   ├── bronze/                         # Scripts for extracting and loading raw data
-│   ├── silver/                         # Scripts for cleaning and transforming data
-│   ├── gold/                           # Scripts for creating analytical models
+│   ├── BronzeLayer/                         # Scripts for extracting and loading raw data
+│   ├── SilverLayer/                         # Scripts for cleaning, transforming data, and performing data quality checks
+│   └── GoldLayer/                           # Scripts for creating analytical models, and performing data quality checks
 │
-├── tests/                              # Test scripts and quality files
-│
-├── README.md                           # Project overview and instructions                          
-├── .gitignore                          # Files and directories to be ignored by Git
-└── requirements.txt                    # Dependencies and requirements for the project
+└── README.md                           # Project overview and instructions                          
 ```
 ---
 

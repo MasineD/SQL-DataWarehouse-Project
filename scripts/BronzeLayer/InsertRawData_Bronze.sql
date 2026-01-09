@@ -21,7 +21,7 @@ BEGIN
 		PRINT '--------Inserting into Bronze.crm_CustomerInfo---------';
 		SET @StartTime = GETDATE();
 		BULK INSERT Bronze.crm_CustomerInfo 
-		FROM 'C:\Users\Donald\OneDrive\Documents\Data Analysis\DWH Project\sql-data-warehouse-project\datasets\source_crm\cust_info.csv'
+		FROM 'C:\Users\Donald\source\repos\SQL-DataWarehouse-Project\datasets\source_crm\cust_info.csv'
 		WITH(
 			FIRSTROW = 2,
 			FIELDTERMINATOR = ',',
@@ -36,7 +36,7 @@ BEGIN
 		PRINT '--------Inserting into Bronze.crm_ProductInfo table---------';
 		SET @StartTime = GETDATE();
 		BULK INSERT Bronze.crm_ProductInfo 
-		FROM 'C:\Users\Donald\OneDrive\Documents\Data Analysis\DWH Project\sql-data-warehouse-project\datasets\source_crm\prd_info.csv'
+		FROM 'C:\Users\Donald\source\repos\SQL-DataWarehouse-Project\datasets\source_crm\prd_info.csv'
 		WITH(
 			FIRSTROW = 2,
 			FIELDTERMINATOR = ',',
@@ -51,7 +51,7 @@ BEGIN
 		PRINT '--------Inserting into Bronze.crm_ProductInfo table---------';
 		SET @StartTime = GETDATE()
 		BULK INSERT Bronze.crm_SalesDetails 
-		FROM 'C:\Users\Donald\OneDrive\Documents\Data Analysis\DWH Project\sql-data-warehouse-project\datasets\source_crm\sales_details.csv'
+		FROM 'C:\Users\Donald\source\repos\SQL-DataWarehouse-Project\datasets\source_crm\sales_details.csv'
 		WITH(
 			FIRSTROW = 2,
 			FIELDTERMINATOR = ',',
@@ -70,7 +70,7 @@ BEGIN
 		PRINT '--------Inserting into Bronze.erp_Customers table---------';
 		SET @StartTime = GETDATE();
 		BULK INSERT Bronze.erp_Customers 
-		FROM 'C:\Users\Donald\OneDrive\Documents\Data Analysis\DWH Project\sql-data-warehouse-project\datasets\source_erp\CUST_AZ12.csv'
+		FROM 'C:\Users\Donald\source\repos\SQL-DataWarehouse-Project\datasets\source_erp\CUST_AZ12.csv'
 		WITH(
 			FIRSTROW = 2,
 			FIELDTERMINATOR = ',',
@@ -85,7 +85,7 @@ BEGIN
 		PRINT '--------Inserting into Bronze.erp_Location table---------';
 		SET @StartTime = GETDATE();
 		BULK INSERT Bronze.erp_Location 
-		FROM 'C:\Users\Donald\OneDrive\Documents\Data Analysis\DWH Project\sql-data-warehouse-project\datasets\source_erp\LOC_A101.csv'
+		FROM 'C:\Users\Donald\source\repos\SQL-DataWarehouse-Project\datasets\source_erp\LOC_A101.csv'
 		WITH(
 			FIRSTROW = 2,
 			FIELDTERMINATOR = ',',
@@ -100,7 +100,7 @@ BEGIN
 		PRINT '--------Inserting into Bronze.erp_Location table---------';
 		SET @StartTime = GETDATE();
 		BULK INSERT Bronze.erp_ProductsCategory 
-		FROM 'C:\Users\Donald\OneDrive\Documents\Data Analysis\DWH Project\sql-data-warehouse-project\datasets\source_erp\PX_CAT_G1V2.csv'
+		FROM 'C:\Users\Donald\source\repos\SQL-DataWarehouse-Project\datasets\source_erp\PX_CAT_G1V2.csv'
 		WITH(
 			FIRSTROW = 2,
 			FIELDTERMINATOR = ',',
